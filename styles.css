@@ -350,7 +350,6 @@ cg-board square.current-premove {
 }
 
 
-
 .lpv--players.lpv--moves-false {
 	grid-template-areas:"player-top" "board" "player-bot" "controls";
 	grid-template-rows:2em auto 2em var(--controls-height)
@@ -372,8 +371,8 @@ cg-board square.current-premove {
 
 .lpv--players.lpv--moves-auto {
 	grid-template-areas:"player-top side" "board      side" "player-bot side" "controls   side";
-	grid-template-columns:minmax(200px, calc(100vh - 2 * 2em - var(--controls-height))) minmax(232px, 1fr);
-	grid-template-rows:2em auto 2em var(--controls-height)
+	grid-template-columns:minmax(200px, calc(100vh - 2 * 2em - var(--controls-height) - 6em));
+	grid-template-rows:2em auto 2em var(--controls-height);
 }
 
 @media (max-width: 500px) {
@@ -383,14 +382,6 @@ cg-board square.current-premove {
 		grid-template-rows:2em auto 2em var(--controls-height)
 	}
 }
-
-
-
-
-
-
-
-
 
 
 .lpv--moves-auto {
@@ -412,6 +403,7 @@ cg-board square.current-premove {
 		grid-template-columns: 1fr; /* Одна колонка */
 		grid-template-rows: auto var(--controls-height) auto;
 		gap: 10px;
+
 	}
 }
 
@@ -429,6 +421,7 @@ cg-board square.current-premove {
 	display: flex;
 	flex-flow: column;
 	min-width: 200px; /* Минимальная ширина для side */
+	height: 100%;
 }
 
 .lpv__controls {
@@ -436,7 +429,6 @@ cg-board square.current-premove {
 	max-width: var(--max-board-size, 1200px); /* Контролы центрируются */
 	justify-self: center;
 }
-
 
 
 .lpv__player--top {
@@ -456,38 +448,48 @@ cg-board square.current-premove {
 	grid-area: 1/1/4/2
 }
 
-.lpv__moves {
-	position: relative;
-	flex: 1 1 0;
-	display: flex;
-	flex-flow: row wrap;
-	overflow-y: auto;
-	/*background: var(--c-lpv-bg-movelist, hsl(37, 5%, 18%));*/
-	align-items: center;
-	align-content: flex-start;
-	will-change: scroll-position;
-	user-select: none;
-	min-width: 20ch
-}
 
-/*.lpv__moves index {*/
-/*	color: var(--c-lpv-font-shy, rgb(109, 108, 106))*/
-/*}*/
+.lpv__moves {
+	display: grid;
+	grid-template-columns: 3em repeat(2, 1fr); /* index + 2 move */
+	gap: 10px; /* Промежутки между элементами */
+	width: 100%; /* Занимает доступное пространство */
+	max-width: 100%; /* Ограничивает ширину родителем */
+	align-items: center;
+	box-sizing: border-box;
+	overflow-x: clip; /* Обрезает содержимое по горизонтали */
+	overflow-y: auto; /* Добавляет вертикальную прокрутку */
+	height: 100%; /* Занимает оставшуюся высоту родителя */
+	max-height: 100%; /* Предотвращает превышение высоты родителя */
+}
 
 .lpv__moves > index {
-	/*flex: 0 0 10%;*/
-	/*margin-right: 3%;*/
-	margin-left: 10px;
+	text-align: right; /* Выравнивание текста вправо */
+	padding: 0 5px;
 	display: flex;
-	justify-content: flex-end
+	align-items: center;
 }
 
-.lpv__moves move {
+.lpv__moves > move {
 	border-radius: 3px;
-	padding-left: 3%;
 	font-weight: bold;
 	white-space: nowrap;
+	padding: 0 5px;
+	min-width: fit-content;
 }
+
+.lpv__moves > comment {
+	grid-column: 1 / -1; /* Комментарий занимает всю ширину */
+	padding: 10px;
+	margin: 5px 0; /* Отступы сверху и снизу */
+
+}
+
+
+
+
+
+
 
 variation move {
 	text-decoration: underline;
