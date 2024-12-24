@@ -451,20 +451,20 @@ cg-board square.current-premove {
 
 .lpv__moves {
 	display: grid;
-	grid-template-columns: 3em repeat(2, 1fr); /* index + 2 move */
-	gap: 10px; /* Промежутки между элементами */
-	width: 100%; /* Занимает доступное пространство */
-	max-width: 100%; /* Ограничивает ширину родителем */
+	grid-template-columns: 3em repeat(2, 1fr);
+	gap: 10px;
+	width: 100%;
+	max-width: 100%;
 	align-items: center;
 	box-sizing: border-box;
-	overflow-x: clip; /* Обрезает содержимое по горизонтали */
-	overflow-y: auto; /* Добавляет вертикальную прокрутку */
-	height: 100%; /* Занимает оставшуюся высоту родителя */
-	max-height: 100%; /* Предотвращает превышение высоты родителя */
+	overflow-x: clip;
+	overflow-y: auto;
+	height: 100%;
+	max-height: 100%;
 }
 
 .lpv__moves > index {
-	text-align: right; /* Выравнивание текста вправо */
+	text-align: right;
 	padding: 0 5px;
 	display: flex;
 	align-items: center;
@@ -479,9 +479,9 @@ cg-board square.current-premove {
 }
 
 .lpv__moves > comment {
-	grid-column: 1 / -1; /* Комментарий занимает всю ширину */
+	grid-column: 1 / -1;
 	padding: 10px;
-	margin: 5px 0; /* Отступы сверху и снизу */
+	margin: 5px 0;
 
 }
 
